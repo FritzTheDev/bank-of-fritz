@@ -6,3 +6,4 @@ class User(AbstractBaseUser):
   email = EmailField(unique=True, max_length=100)
 
   USERNAME_FIELD = 'email'
+  EMAIL_FIELD = 'email'
