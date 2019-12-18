@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
             email,
             password=password,
         )
-        user.staff = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -37,13 +37,15 @@ class UserManager(BaseUserManager):
             email,
             password=password,
         )
-        user.staff = True
-        user.admin = True
+        user.is_staff = True
+        user.is_admin = True
         user.save(using=self._db)
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
   email = EmailField(unique=True, max_length=100)
+  is_staff = BooleanField(default=False)
+  is_admin = BooleanField(default=False)
   objects = UserManager()
 
   USERNAME_FIELD = 'email'
