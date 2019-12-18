@@ -1,5 +1,5 @@
-from django.db.models import EmailField
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models import EmailField, BooleanField
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -42,9 +42,8 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
   email = EmailField(unique=True, max_length=100)
-
   objects = UserManager()
 
   USERNAME_FIELD = 'email'
