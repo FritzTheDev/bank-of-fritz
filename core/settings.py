@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,8 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
+
+AUTH_USER_MODEL='users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
